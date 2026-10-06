@@ -1,0 +1,133 @@
+-----------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\jsemprini\OneDrive - Des Moines University\2-External-Collab\10-FRD
+> C\1-Birth\b-results\5-gh_analysis.log
+  log type:  text
+ opened on:  30 Sep 2026, 21:28:38
+
+. 
+. sum gh_rate, det
+
+                           gh_rate
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            0              0
+ 5%            0              0
+10%            0              0       Obs                 425
+25%            0              0       Sum of wgt.         425
+
+50%     86.61417                      Mean           71.50795
+                        Largest       Std. dev.      58.40266
+75%     119.3277       194.0298
+90%     139.9177       197.6048       Variance        3410.87
+95%     152.0468       199.2032       Skewness      -.0517482
+99%     189.1892       236.5591       Kurtosis       1.674786
+
+. 
+. xtreg gh_rate L1.nitrate i.year, fe vce(cluster id)
+
+Fixed-effects (within) regression               Number of obs     =        425
+Group variable: id                              Number of groups  =         85
+
+R-squared:                                      Obs per group:
+     Within  = 0.0553                                         min =          5
+     Between = 0.0057                                         avg =        5.0
+     Overall = 0.0042                                         max =          5
+
+                                                F(5, 84)          =       4.01
+corr(u_i, Xb) = -0.0985                         Prob > F          =     0.0026
+
+                                    (Std. err. adjusted for 85 clusters in id)
+------------------------------------------------------------------------------
+             |               Robust
+     gh_rate | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     nitrate |
+         L1. |   5.741617   7.754027     0.74   0.461    -9.678115    21.16135
+             |
+        year |
+       2021  |   10.07294   4.128032     2.44   0.017     1.863899    18.28199
+       2022  |   11.25834   3.824882     2.94   0.004     3.652143    18.86454
+       2023  |    14.3626    5.04938     2.84   0.006     4.321349    24.40384
+       2024  |   21.71451   5.603992     3.87   0.000     10.57036    32.85866
+             |
+       _cons |     55.761    6.19383     9.00   0.000     43.44389    68.07811
+-------------+----------------------------------------------------------------
+     sigma_u |  50.627784
+     sigma_e |  33.416289
+         rho |  .69654817   (fraction of variance due to u_i)
+------------------------------------------------------------------------------
+
+. 
+. margins , dydx(L1.nitrate)
+
+Average marginal effects                                   Number of obs = 425
+Model VCE: Robust
+
+Expression: Linear prediction, predict()
+dy/dx wrt:  L.nitrate
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/dx   std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     nitrate |
+         L1. |   5.741617   7.754027     0.74   0.459    -9.455996    20.93923
+------------------------------------------------------------------------------
+
+. margins , dyex(L1.nitrate)
+
+Average marginal effects                                   Number of obs = 425
+Model VCE: Robust
+
+Expression: Linear prediction, predict()
+dy/ex wrt:  L.nitrate
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/ex   std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     nitrate |
+         L1. |   4.265274   5.760233     0.74   0.459    -7.024575    15.55512
+------------------------------------------------------------------------------
+
+. margins , eydx(L1.nitrate)
+
+Average marginal effects                                   Number of obs = 425
+Model VCE: Robust
+
+Expression: Linear prediction, predict()
+ey/dx wrt:  L.nitrate
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      ey/dx   std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     nitrate |
+         L1. |   .0814851   .1109893     0.73   0.463    -.1360499    .2990202
+------------------------------------------------------------------------------
+
+. margins , eyex(L1.nitrate)
+
+Average marginal effects                                   Number of obs = 425
+Model VCE: Robust
+
+Expression: Linear prediction, predict()
+ey/ex wrt:  L.nitrate
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      ey/ex   std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     nitrate |
+         L1. |   .0560052   .0710896     0.79   0.431    -.0833279    .1953383
+------------------------------------------------------------------------------
+
+. 
+. log close
+      name:  <unnamed>
+       log:  C:\Users\jsemprini\OneDrive - Des Moines University\2-External-Collab\10-FRD
+> C\1-Birth\b-results\5-gh_analysis.log
+  log type:  text
+ closed on:  30 Sep 2026, 21:28:40
+-----------------------------------------------------------------------------------------
