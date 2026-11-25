@@ -1,0 +1,125 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\jsemprini\OneDrive - Des Moines University\2-External-Collab\10-FRDC\1-Birth\2-pretermbirths\ptb_analysis.log
+  log type:  text
+ opened on:  29 Sep 2026, 22:01:43
+
+. 
+. sum nitrate , det
+
+           Population-weighted mean nitrate (mg/L)
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            0              0
+ 5%         .025              0
+10%     .0591752              0       Obs                 522
+25%     .1815169              0       Sum of wgt.         522
+
+50%     .4705333                      Mean           .7315335
+                        Largest       Std. dev.      .8907429
+75%     .9163377           5.03
+90%     1.692896       5.849144       Variance       .7934229
+95%      2.29716            6.2       Skewness       2.865179
+99%       4.2075            6.2       Kurtosis       13.57931
+
+. 
+. xtreg ptb_rate L1.nitrate, fe vce(cluster id)
+
+Fixed-effects (within) regression               Number of obs     =        425
+Group variable: id                              Number of groups  =         85
+
+R-squared:                                      Obs per group:
+     Within  = 0.0279                                         min =          5
+     Between = 0.0072                                         avg =        5.0
+     Overall = 0.0023                                         max =          5
+
+                                                F(1, 84)          =       4.98
+corr(u_i, Xb) = -0.4434                         Prob > F          =     0.0284
+
+                                    (Std. err. adjusted for 85 clusters in id)
+------------------------------------------------------------------------------
+             |               Robust
+    ptb_rate | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     nitrate |
+         L1. |   19.58854   8.781583     2.23   0.028     2.125396    37.05168
+             |
+       _cons |   44.44406   6.523574     6.81   0.000     31.47122     57.4169
+-------------+----------------------------------------------------------------
+     sigma_u |  44.657591
+     sigma_e |  27.698037
+         rho |  .72218492   (fraction of variance due to u_i)
+------------------------------------------------------------------------------
+
+. 
+. margins , dydx(L1.nitrate)
+
+Average marginal effects                                   Number of obs = 425
+Model VCE: Robust
+
+Expression: Linear prediction, predict()
+dy/dx wrt:  L.nitrate
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/dx   std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     nitrate |
+         L1. |   19.58854   8.781583     2.23   0.026     2.376951    36.80012
+------------------------------------------------------------------------------
+
+. margins , dyex(L1.nitrate)
+
+Average marginal effects                                   Number of obs = 425
+Model VCE: Robust
+
+Expression: Linear prediction, predict()
+dy/ex wrt:  L.nitrate
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/ex   std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     nitrate |
+         L1. |   14.55173   6.523574     2.23   0.026     1.765765     27.3377
+------------------------------------------------------------------------------
+
+. margins , eydx(L1.nitrate)
+
+Average marginal effects                                   Number of obs = 425
+Model VCE: Robust
+
+Expression: Linear prediction, predict()
+ey/dx wrt:  L.nitrate
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      ey/dx   std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     nitrate |
+         L1. |    .351254   .1731096     2.03   0.042     .0119655    .6905425
+------------------------------------------------------------------------------
+
+. margins , eyex(L1.nitrate)
+
+Average marginal effects                                   Number of obs = 425
+Model VCE: Robust
+
+Expression: Linear prediction, predict()
+ey/ex wrt:  L.nitrate
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      ey/ex   std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     nitrate |
+         L1. |   .2030465   .0814891     2.49   0.013     .0433307    .3627623
+------------------------------------------------------------------------------
+
+. 
+. log close
+      name:  <unnamed>
+       log:  C:\Users\jsemprini\OneDrive - Des Moines University\2-External-Collab\10-FRDC\1-Birth\2-pretermbirths\ptb_analysis.log
+  log type:  text
+ closed on:  29 Sep 2026, 22:01:44
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
